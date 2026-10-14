@@ -1,0 +1,5 @@
+services:
+  runtime:
+    volumes:
+      - ${FORCEVLA_OUTPUTS:?Set FORCEVLA_OUTPUTS to an absolute host path}:/forcevla_outputs
+

@@ -1,0 +1,71 @@
+# Local secrets and overrides
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Editors and OS files
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
+
+# Third-party source trees are installed by scripts
+third_party/*
+!third_party/README.md
+
+# Runtime data and caches
+data/*
+!data/README.md
+!data/raw/
+!data/raw/.gitkeep
+!data/processed/
+!data/processed/.gitkeep
+!data/libero/
+!data/libero/.gitkeep
+!data/cache/
+!data/cache/.gitkeep
+
+# Training artifacts
+checkpoints/*
+!checkpoints/.gitkeep
+logs/*
+!logs/.gitkeep
+outputs/*
+!outputs/.gitkeep
+wandb/
+runs/
+
+# Model/data formats that should never enter normal Git history
+*.ckpt
+*.pth
+*.pt
+*.safetensors
+*.hdf5
+*.h5
+*.npz
+*.npy
+*.tfrecord
+*.bag
+*.mp4
+*.avi
+
+# Local build/package artifacts
+build/
+dist/
+*.egg-info/
+

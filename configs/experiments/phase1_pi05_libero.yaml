@@ -1,0 +1,39 @@
+schema_version: 1
+experiment:
+  name: phase1_pi05_libero_lora
+  objective: Reproduce the OpenPI pi0.5 LIBERO pipeline, then establish a single-RTX-4090 LoRA training loop.
+
+upstream:
+  openpi_config: pi05_libero_lora_4090
+  base_checkpoint: gs://openpi-assets/checkpoints/pi05_base/params
+  pretrained_eval_checkpoint: gs://openpi-assets/checkpoints/pi05_libero
+  dataset: physical-intelligence/libero
+
+evaluation:
+  first_suite: libero_10
+  renderer: egl
+  save_videos: true
+
+training:
+  strategy: lora
+  backend: jax
+  action_horizon: 10
+  batch_size_start: 1
+  smoke_steps: 20
+  target_steps: 30000
+  ema: false
+  wandb_mode_initial: offline
+
+artifacts:
+  data: data/
+  checkpoints: checkpoints/
+  logs: logs/
+  outputs: outputs/
+
+acceptance_gates:
+  - GPU is visible to both JAX and PyTorch.
+  - OpenPI debug training completes.
+  - LIBERO pretrained evaluation launches and produces episode results.
+  - Normalization statistics are computed for the selected config.
+  - A 20-step pi0.5 LoRA run completes without OOM or NaN.
+
